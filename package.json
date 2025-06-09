@@ -11,6 +11,7 @@
     "@wdio/spec-reporter": "^9.15.0"
   },
   "dependencies": {
-    "chai": "^5.2.0"
+    "chai": "^5.2.0",
+    "chai-http": "^5.1.2"
   }
 }

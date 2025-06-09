@@ -1,4 +1,4 @@
-import { expect } from '@wdio/globals'
+import { expect, assert } from 'chai'
 
 import LoginPage from '../pageobjects/login.page.js'
 import IndexPage from '../pageobjects/index.page.js'
@@ -22,7 +22,12 @@ describe('Login page', () => {
    
     await loginPage.loginButton.click();
 
-    await expect(loginPage.errorMessage.getValue('Email is required'));
+    await loginPage.errorMessage.waitForDisplayed();
+
+    const errorText = await loginPage.errorMessage.getText();
+
+    assert.equal(errorText, 'Email is required');
+
 
     })
 
@@ -33,10 +38,16 @@ it('(UC-2) Test Login form with empty password', async () => {
     await loginPage.open();
 
     await loginPage.setEmail(process.env.EMAIL);
+
+    await loginPage.setPassword('');
    
     await loginPage.loginButton.click();
 
-    await expect(loginPage.errorMessage.getValue('Password is required'));
+   await loginPage.errorMessage.waitForDisplayed();
+
+    const errorText = await loginPage.errorMessage.getText();
+
+    assert.equal(errorText, 'Password is required');
 
     })
 
@@ -53,9 +64,12 @@ it('(UC-3) Test Login form with invalid Username & Password', async () => {
 
     await loginPage.loginButton.click();
 
-    await expect(loginPage.errorMessage.getValue('Invalid email or password'));
+    await loginPage.errorMessage.waitForDisplayed();
 
-    
+    const errorText = await loginPage.errorMessage.getText();
+
+    assert.equal(errorText, 'Invalid email or password');
+
 })    
 
 
@@ -70,7 +84,10 @@ it('(UC-4) Test Login form with valid Username & Password', async () => {
 
     await loginPage.loginButton.click();
 
-    await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/account');
+    await indexPage.dropdownMenu.waitForDisplayed();
+
+    const currentUrl = await browser.getUrl();
+    expect(currentUrl).to.equal('https://practicesoftwaretesting.com/account');
 
 })    
 
@@ -93,12 +110,13 @@ it('(UC-5) User logs out successfully', async () => {
 
     await indexPage.logoutButton.click();
 
-    await expect(browser).toHaveUrl('https://practicesoftwaretesting.com/auth/login');
+    await loginPage.loginButton.waitForDisplayed();
 
+     const currentUrl = await browser.getUrl();
+
+     expect(currentUrl).to.equal('https://practicesoftwaretesting.com/auth/login');
 
     })
-
-
 
 
 

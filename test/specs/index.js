@@ -1,7 +1,9 @@
-import { expect } from '@wdio/globals'
-
+import { should } from 'chai'
 import IndexPage from '../pageobjects/index.page.js'
-import { browser} from '@wdio/globals'
+
+
+
+should();
 
 
 let indexPage = new IndexPage('https://practicesoftwaretesting.com');
@@ -22,10 +24,13 @@ describe('index page', () => {
 
     await indexPage.DeButton.click();
 
-    await indexPage.checkSortTitleLanguage('Sortieren');
+    const sortTitle = await indexPage.sortTitle.getValue();
+
+    sortTitle.should.equal('Sortieren');
     
 
     })
+
 
 
 it('(UC-7) User using search with results', async () => {
@@ -38,9 +43,16 @@ it('(UC-7) User using search with results', async () => {
 
     await indexPage.searchBox.click();
 
-    await indexPage.checkSearchResults('Wood Saw');
+    await indexPage.searchResults.waitForDisplayed();
+
+    const searchResults = await indexPage.searchResults.getValue();
+
+    await searchResults.should.equal('Wood Saw');
 
     })
+
+
+
 
 
 it('(UC-8) User using search with no results', async () => {
@@ -54,10 +66,13 @@ it('(UC-8) User using search with no results', async () => {
 
     await indexPage.searchBox.click();
 
-    await indexPage.checkSearchResults('There are no products found');
+    await indexPage.searchResults.waitForDisplayed();
+
+    const searchResults = await indexPage.searchResults.getValue();
+
+    await searchResults.should.equal('There are no products found');
 
 })
-
 
 
 

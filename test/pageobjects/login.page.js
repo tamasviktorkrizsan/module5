@@ -36,7 +36,7 @@ class LoginPage extends BasePage {
 
 
   get errorMessage(){
-    return $('[data-test=login-form]');
+    return $('/html/body/app-root/div/app-login/div/div/div/div[4]/div');
   }
 
 
