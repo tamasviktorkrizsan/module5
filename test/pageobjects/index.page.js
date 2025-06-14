@@ -12,20 +12,27 @@ constructor(url){
 get sortTitle(){  
 
 
-return $('/html/body/app-root/app-header/nav/div/div/div/ul/li[1]/a');
+return $('.grid-title');
 
 }
+
+
+get accountTitle(){  
+
+
+return $('[data-test="page-title"]');
+
+}
+
+
+
+
+
 
 
 get dropdownMenu(){
 
-return $('//*[@data-test="nav-menu"]');
-
-}
-
-get languageSelector(){
-
-return $('//*[@id="language"]');
+return $('[data-test="nav-menu"]');
 
 }
 
@@ -36,27 +43,59 @@ get logoutButton(){
 }
 
 
-get DeButton(){
-  return $('/html/body/app-root/app-header/nav/div/div/div/ul/li[1]/a');
+
+
+
+get languageSelector(){
+
+return $('[data-test="language-select"]');
+
 }
+
+
+get DeButton(){
+  return $('[data-test="lang-de"]');
+}
+
+
+
+
+
 
 get searchResults(){
-  return $('/html/body/app-root/div/app-overview');
+  return $$('a.card');
 }
 
 
-async checkSortTitleLanguage(text){  
+get cardTitle(){
+
+return $('.card-title');
+
+}
+
+
+
+get noResultsText(){
+
+  return $('[data-test="no-results"]');
+}
+
+
+/* async checkSortTitleLanguage(text){  
 
   
     await expect(this.sortTitle.getValue(text));
-  }
+  } */
 
 
-  async checkSearchResults(text){  
 
-  
+
+// getTextre kicserélni
+
+  /* async checkSearchResults(text){  
+
     await expect(this.searchResults.getValue(text));
-  }
+  } */
 
 
 
@@ -69,8 +108,10 @@ async checkSortTitleLanguage(text){
   }
 
 
+// kicserélni selectort
+
   get searchButton(){
-    return $('/html/body/app-root/div/app-overview/div[3]/div[1]/form[2]/div/button[2]');
+    return $('[data-test="search-submit"');
   }
 
 

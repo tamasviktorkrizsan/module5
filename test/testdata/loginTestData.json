@@ -1,0 +1,11 @@
+{
+
+
+
+
+  "invalidCredentials": {    
+    "email": "wrong@email.com",
+    "password": "securePass123"
+  }
+
+}
