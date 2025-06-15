@@ -7,22 +7,16 @@ class LoginPage extends BasePage {
     super(url)
   }
 
-
-
-get registerTitle(){
-
-return $('[data-test="register-link"]');
-
-
-}
-
+  get registerTitle(){
+  return $('[data-test="register-link"]');
+  }
 
   get email(){
-    return $('[id="email"]');
+    return $('[data-test="email"]');
   }
 
   get password(){
-    return $('[id="password"]');
+    return $('[data-test="password"]');
   }
 
   async setEmail(email){
@@ -33,44 +27,21 @@ return $('[data-test="register-link"]');
     await this.password.setValue(password);
   }
 
-
-
   get loginButton(){
     return $('[data-test="login-submit"]');
   }
 
-
-get emailError(){
+  get emailError(){
     return $('[id="email-error"]');
   }
-
-
-
 
  get passwordError(){
     return $('[id="password-error"]');
   }
 
-
-
   get loginError(){
     return $('[data-test="login-error"]');
   }
-
-
-
-
-
-
-// expect.to
-// getText()
-
-
-
- /*  async checkErrorMessage(message){
-    await expect(this.errorMessage.getValue(message));
-  }
- */
 
 }
 

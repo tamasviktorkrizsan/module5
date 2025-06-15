@@ -4,100 +4,60 @@ import BasePage from './base.page.js';
 class IndexPage extends BasePage {
     
  
-constructor(url){
+  constructor(url){
     super(url)
   }
 
 
-get sortTitle(){  
+  get sortTitle(){  
+    return $('.grid-title');
+  }
 
 
-return $('.grid-title');
-
-}
-
-
-get accountTitle(){  
+  get accountTitle(){  
+    return $('[data-test="page-title"]');
+  }
 
 
-return $('[data-test="page-title"]');
-
-}
-
-
+  get searchTerm(){
+    return $('[data-test="search-term"]');
+  }
 
 
+  get searchCaption(){
+    return $('[data-test="search-caption"]');
+  }
 
 
-
-get dropdownMenu(){
-
-return $('[data-test="nav-menu"]');
-
-}
+  get dropdownMenu(){
+    return $('[data-test="nav-menu"]');
+  }
 
 
-get logoutButton(){
-
+  get logoutButton(){
     return $('//*[@data-test="nav-sign-out"]');
-}
+  }
 
 
+  get languageSelector(){
+    return $('[data-test="language-select"]');
+  }
 
+  get DeButton(){
+    return $('[data-test="lang-de"]');
+  }
 
+  get searchResults(){
+    return $$('a.card');
+  }
 
-get languageSelector(){
+  get cardTitle(){
+    return $('[data-test="product-name"]');
+  }
 
-return $('[data-test="language-select"]');
-
-}
-
-
-get DeButton(){
-  return $('[data-test="lang-de"]');
-}
-
-
-
-
-
-
-get searchResults(){
-  return $$('a.card');
-}
-
-
-get cardTitle(){
-
-return $('.card-title');
-
-}
-
-
-
-get noResultsText(){
-
-  return $('[data-test="no-results"]');
-}
-
-
-/* async checkSortTitleLanguage(text){  
-
-  
-    await expect(this.sortTitle.getValue(text));
-  } */
-
-
-
-
-// getTextre kicserélni
-
-  /* async checkSearchResults(text){  
-
-    await expect(this.searchResults.getValue(text));
-  } */
-
-
+  get noResultsText(){
+    return $('[data-test="no-results"]');
+  }
 
  get searchBox(){
     return $('[id="search-query"]');
@@ -107,26 +67,10 @@ get noResultsText(){
     await this.searchBox.setValue(text);
   }
 
-
-// kicserélni selectort
-
   get searchButton(){
     return $('[data-test="search-submit"');
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
 
 export default IndexPage;
